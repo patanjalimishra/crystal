@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{{ title or 'Candidate Signal' }} · Crystal</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head>
+<body><div class="shell">
+<header class="topbar"><a class="brand" href="{{ url_for('index') }}"><span class="brandmark">C</span><span>crystal<span class="muted"> / talent intelligence</span></span></a>{% if session.get('email') %}<div class="account"><span class="avatar">{{ session.get('email','C')[0]|upper }}</span><span>{{ session.get('email') }}</span><form method="post" action="{{ url_for('logout') }}"><button class="linkbtn">Sign out</button></form></div>{% endif %}</header>
+<main>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flashes">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
+<footer>Candidate Signal <span>·</span> Integrity-first screening <span>·</span> Human review always required</footer></div></body></html>
